@@ -13,7 +13,7 @@ const navItems = [
   { label: "Contact", href: "#contact" },
 ] as const;
 
-const WHATSAPP_URL = "https://wa.me/15551234567";
+const WHATSAPP_URL = "https://wa.me/8169546916";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);

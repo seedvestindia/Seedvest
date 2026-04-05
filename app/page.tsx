@@ -430,7 +430,7 @@ export default function Home() {
                     </span>
                     <br />
                     <a
-                      href="https://wa.me/15551234567"
+                      href="https://wa.me/8169546916"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-[var(--accent)] hover:underline"
