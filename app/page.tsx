@@ -260,9 +260,6 @@ export default function Home() {
                 />
               </svg>
             </div>
-              <p className="absolute top-1 text-center text-xs font-semibold text-[var(--foreground)] sm:top-2 sm:text-sm">
-                Pooja
-              </p>
           </div>
         </div>
       </section>
