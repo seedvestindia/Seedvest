@@ -1,4 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import { SiteFooter } from "./components/SiteFooter";
+import { SiteHeader } from "./components/SiteHeader";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -12,9 +14,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "SeedVest",
+  title: "SeedVest | Real estate, investments & insurance",
   description:
-    "SeedVest is a trusted personal finance and investment advisor, helping individuals grow wealth, plan for retirement, and achieve financial freedom with expert guidance.",
+    "Professional guidance for real estate, investments, insurance, tools, and insights. Contact SeedVest to plan your next step.",
   icons: {
     icon: [
       {
@@ -38,9 +40,13 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="flex min-h-full flex-col">
+        <SiteHeader />
+        <main className="flex-1">{children}</main>
+        <SiteFooter />
+      </body>
     </html>
   );
 }

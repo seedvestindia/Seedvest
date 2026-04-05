@@ -1,8 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #f8faf8;
+  --foreground: #0f172a;
+  --muted: #64748b;
+  --muted-bg: #e8eee8;
+  --surface: #ffffff;
+  --surface-2: #f1f5f1;
+  --border: #e2e8e0;
+  --accent: #166534;
+  --accent-soft: #dcfce7;
 }
 
 @theme inline {
@@ -14,13 +21,69 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #0c1210;
+    --foreground: #f1f5f9;
+    --muted: #94a3b8;
+    --muted-bg: #1e293b;
+    --surface: #111827;
+    --surface-2: #0f172a;
+    --border: #1e293b;
+    --accent: #22c55e;
+    --accent-soft: #14532d;
   }
 }
 
-/* body {
+body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
-} */
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+}
+
+@keyframes animal-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(2deg);
+  }
+}
+
+@keyframes animal-glow {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes paw-fade {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.45;
+  }
+}
+
+.animal-float {
+  animation: animal-float 5s ease-in-out infinite;
+}
+
+.animal-glow {
+  animation: animal-glow 4s ease-in-out infinite;
+}
+
+.paw-fade {
+  animation: paw-fade 3s ease-in-out infinite;
+}
+
+.paw-fade-delay {
+  animation: paw-fade 3s ease-in-out infinite;
+  animation-delay: 1.2s;
+}
