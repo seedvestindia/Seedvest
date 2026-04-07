@@ -1,7 +1,10 @@
-import { Geist_Mono, Sora } from "next/font/google";
+import { Geist_Mono, Sora, JetBrains_Mono } from "next/font/google";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
+const jetbrainsMono = JetBrains_Mono({subsets:['latin'],variable:'--font-mono'});
 
 const sora = Sora({
   variable: "--font-sora",
@@ -27,7 +30,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${sora.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
+      className={cn("h-full", "scroll-smooth", "antialiased", sora.variable, geistMono.variable, "font-mono", jetbrainsMono.variable)}
     >
       <head>
         {/* Default: system-based favicon switching */}

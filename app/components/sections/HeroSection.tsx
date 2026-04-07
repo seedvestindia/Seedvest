@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { Globe3DDemo } from "../Globe3DDemo";
 
 type HeroSlide = {
   title: string;
@@ -20,7 +21,7 @@ export function HeroSection() {
       {
         title: "Make Smart Property Decisions, Not Guesswork",
         subtitle:
-          "Buying your first home? Or building a portfolio that actually performs? We cut through the noise, Provide location insights, pricing clarity and future potential, so you invest where it truly matters.",
+          "Buying your first home? Or building a portfolio that actually performs? We cut through the noise, provide location insights, pricing clarity and future potential, so you invest where it truly matters.",
         ctaLabel: "Explore Properties",
         ctaHref: "#real-estate",
       },
@@ -34,7 +35,7 @@ export function HeroSection() {
       {
         title: "Secure What You’re Building",
         subtitle:
-          "You work hard to build your wealth, don’t leave it exposed. We help you choose the right insurance to protect your income, your family, and everything you’re working towards, without the usual confusion or fine print.",
+          "You work hard to build your wealth, don’t leave it exposed. We help you choose the right insurance to protect your income, your family, and everything you’re working towards.",
         ctaLabel: "Get Protected",
         ctaHref: "#insurance",
       },
@@ -46,7 +47,7 @@ export function HeroSection() {
         ctaHref: "#contact",
       },
     ],
-    []
+    [],
   );
 
   const [activeHeroSlide, setActiveHeroSlide] = useState(0);
@@ -62,86 +63,91 @@ export function HeroSection() {
   const currentHeroSlide = heroSlides[activeHeroSlide];
 
   return (
-    <section
-      className="border-b border-[var(--border)] bg-[var(--surface)]"
-      aria-labelledby="hero-heading"
-    >
-      <div className="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-        <p className="text-sm font-medium uppercase tracking-wider text-[var(--accent)]">
-          SeedVest
-        </p>
-        <h1
-          id="hero-heading"
-          className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-[var(--foreground)] sm:text-4xl lg:text-5xl"
-        >
-          {currentHeroSlide.title}
-        </h1>
-        <p className="mt-4 max-w-xl text-base leading-relaxed text-[var(--muted)]">
-          {currentHeroSlide.subtitle}
-        </p>
+    <section className="relative border-b border-[var(--border)] bg-[var(--surface)] overflow-hidden">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        <div className="grid lg:grid-cols-2 items-center gap-8">
+          {/* LEFT CONTENT */}
+          <div className="z-10">
+            <p className="text-sm font-medium uppercase tracking-wider dark:text-blue-600">
+              SeedVest
+            </p>
 
-        <div className="mt-8 flex flex-wrap items-center gap-3">
-          {currentHeroSlide.ctaLabel && currentHeroSlide.ctaHref ? (
-            <a
-              href={currentHeroSlide.ctaHref}
-              className="inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:brightness-110"
-            >
-              {currentHeroSlide.ctaLabel}
-            </a>
-          ) : null}
+            <h1 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-5xl">
+              {currentHeroSlide.title}
+            </h1>
 
-          <div className="ml-auto flex items-center gap-3">
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-gray-600 dark:text-gray-400">
+              {currentHeroSlide.subtitle}
+            </p>
+
+            <div className="mt-8 flex flex-wrap items-center gap-3">
+              {currentHeroSlide.ctaLabel && currentHeroSlide.ctaHref && (
+                <a
+                  href={currentHeroSlide.ctaHref}
+                  className="inline-flex items-center justify-center rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
+                >
+                  {currentHeroSlide.ctaLabel}
+                </a>
+              )}
+            </div>
+          </div>
+
+          {/* RIGHT GLOBE */}
+          <div className="relative h-[500px] lg:h-[500px] w-full overflow-hidden">
+            {/* Gradient fade */}
+            <div className="absolute inset-0 pointer-events-none bg-gradient-to-r from-[var(--surface)] via-transparent to-transparent z-10" />
+
+            {/* Perfect half-globe */}
+            <div className="absolute lg:top-1/2 lg:-translate-y-1/2 right-[-20%] w-[1000px] h-[500px]">
+              <Globe3DDemo />
+            </div>
+          </div>
+        </div>
+
+        {/* SLIDER CONTROLS */}
+        <div className="mt-10 flex items-center justify-between">
+          {/* Dots */}
+          <div className="flex items-center gap-2">
+            {heroSlides.map((_, idx) => {
+              const isActive = idx === activeHeroSlide;
+              return (
+                <button
+                  key={idx}
+                  onClick={() => setActiveHeroSlide(idx)}
+                  className={[
+                    "h-2.5 w-2.5 rounded-full transition",
+                    isActive
+                      ? "bg-[var(--accent)]"
+                      : "bg-[var(--border)] hover:bg-[var(--accent)]/50",
+                  ].join(" ")}
+                />
+              );
+            })}
+          </div>
+
+          {/* Arrows */}
+          <div className="flex gap-3">
             <button
-              type="button"
               onClick={() =>
                 setActiveHeroSlide(
-                  (prev) => (prev - 1 + heroSlides.length) % heroSlides.length
+                  (prev) => (prev - 1 + heroSlides.length) % heroSlides.length,
                 )
               }
-              className="rounded-full border border-[var(--border)] bg-[var(--background)] px-3 py-2 text-sm font-medium text-[var(--foreground)] transition hover:border-[var(--accent)]/40"
-              aria-label="Previous slide"
+              className="rounded-full border border-[var(--border)] px-3 py-2"
             >
               ←
             </button>
             <button
-              type="button"
               onClick={() =>
                 setActiveHeroSlide((prev) => (prev + 1) % heroSlides.length)
               }
-              className="rounded-full border border-[var(--border)] bg-[var(--background)] px-3 py-2 text-sm font-medium text-[var(--foreground)] transition hover:border-[var(--accent)]/40"
-              aria-label="Next slide"
+              className="rounded-full border border-[var(--border)] px-3 py-2"
             >
               →
             </button>
           </div>
         </div>
-
-        <div
-          className="mt-8 flex items-center gap-2"
-          role="tablist"
-          aria-label="Hero slides"
-        >
-          {heroSlides.map((_, idx) => {
-            const isActive = idx === activeHeroSlide;
-            return (
-              <button
-                key={idx}
-                type="button"
-                onClick={() => setActiveHeroSlide(idx)}
-                className={[
-                  "h-2.5 w-2.5 rounded-full transition",
-                  isActive
-                    ? "bg-[var(--accent)]"
-                    : "bg-[var(--border)] hover:bg-[var(--accent)]/50",
-                ].join(" ")}
-                aria-label={`Go to slide ${idx + 1}`}
-                aria-current={isActive ? "true" : undefined}
-              />
-            );
-          })}
-        </div>
       </div>
     </section>
   );
 }
-
