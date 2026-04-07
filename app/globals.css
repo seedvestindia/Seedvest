@@ -1,42 +1,50 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f8faf8;
-  --foreground: #0f172a;
-  --muted: #64748b;
-  --muted-bg: #e8eee8;
+  /* Palette target:
+     - ~70% white surfaces
+     - ~20% black for primary text / dark elements
+     - ~10% dark-ish blue for accents */
+  --background: #ffffff;
+  --foreground: #0b0f14;
+  --muted: #566173;
+  --muted-bg: #f2f5f9;
   --surface: #ffffff;
-  --surface-2: #f1f5f1;
-  --border: #e2e8e0;
-  --accent: #166534;
-  --accent-soft: #dcfce7;
+  --surface-2: #f7f9fc;
+  --border: #e6ebf2;
+  --accent: #1e3a8a;
+  --accent-soft: #dbeafe;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-sora);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0c1210;
-    --foreground: #f1f5f9;
-    --muted: #94a3b8;
-    --muted-bg: #1e293b;
-    --surface: #111827;
-    --surface-2: #0f172a;
-    --border: #1e293b;
-    --accent: #22c55e;
-    --accent-soft: #14532d;
-  }
+html.dark {
+  --background: #0a0d12;
+  --foreground: #f4f7ff;
+  --muted: #a3afc2;
+  --muted-bg: #121826;
+  --surface: #0f1522;
+  --surface-2: #0c111c;
+  --border: #1c2638;
+  --accent: #1d4ed8;
+  --accent-soft: #0b1d4a;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-sora), system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "Times New Roman", Times, serif;
 }
 
 @keyframes animal-float {
