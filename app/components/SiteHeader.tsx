@@ -89,7 +89,7 @@ export function SiteHeader() {
         </nav>
 
         <div className="hidden items-center gap-2 lg:flex">
-          {/* <ThemeToggle /> */}
+          <ThemeToggle />
           <a
             href={WHATSAPP_URL}
             target="_blank"
@@ -126,7 +126,7 @@ export function SiteHeader() {
           <aside
             id="mobile-nav"
             className={[
-              "absolute left-0 top-0 h-full w-80 max-w-[85vw] border-r border-[var(--border)] bg-[var(--surface)] shadow-xl transition-transform",
+              "absolute left-0 top-0 flex h-full w-80 max-w-[85vw] flex-col border-r border-[var(--border)] shadow-xl transition-transform [background-color:var(--surface)]",
               open ? "translate-x-0" : "-translate-x-full",
             ].join(" ")}
             role="dialog"
@@ -151,7 +151,7 @@ export function SiteHeader() {
               </button>
             </div>
 
-            <nav className="space-y-1 px-3 py-4" aria-label="Mobile">
+            <nav className="flex-1 space-y-1 px-3 py-4 [background-color:var(--surface)]" aria-label="Mobile">
               {navItems.map((item) => (
                 <a
                   key={item.href}
