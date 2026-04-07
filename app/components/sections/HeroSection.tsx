@@ -68,11 +68,11 @@ export function HeroSection() {
         <div className="grid lg:grid-cols-2 items-center gap-8">
           {/* LEFT CONTENT */}
           <div className="z-10">
-            <p className="text-sm font-medium uppercase tracking-wider dark:text-blue-600">
+            <p className="text-sm font-medium uppercase tracking-wider text-[var(--accent)]">
               SeedVest
             </p>
 
-            <h1 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-gray-900 dark:text-white sm:text-4xl lg:text-5xl">
+            <h1 className="mt-3 max-w-2xl text-3xl font-semibold tracking-tight text-[var(--foreground)] sm:text-4xl lg:text-5xl">
               {currentHeroSlide.title}
             </h1>
 
