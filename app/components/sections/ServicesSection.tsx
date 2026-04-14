@@ -1,9 +1,6 @@
 export function ServicesSection() {
   return (
-    <section
-      className="border-b border-[var(--border)] bg-[var(--surface)] py-16 sm:py-20"
-      aria-label="Services overview"
-    >
+    <section className="py-16 sm:py-20" aria-label="Services overview">
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl font-semibold tracking-tight text-[var(--foreground)]">
           What we help with
@@ -40,7 +37,9 @@ export function ServicesSection() {
             id="insurance"
             className="scroll-mt-24 rounded-2xl border border-[var(--border)] bg-[var(--background)] p-6"
           >
-            <h3 className="font-semibold text-[var(--foreground)]">Insurance</h3>
+            <h3 className="font-semibold text-[var(--foreground)]">
+              Insurance
+            </h3>
             <p className="mt-2 text-sm leading-relaxed text-[var(--muted)]">
               Coverage reviews that connect policy details to what your family
               or business actually needs.
@@ -81,4 +80,3 @@ export function ServicesSection() {
     </section>
   );
 }
-

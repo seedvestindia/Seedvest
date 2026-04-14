@@ -1,5 +1,6 @@
 "use client";
 
+import { Moon, Sun } from "lucide-react";
 import { useEffect, useState } from "react";
 
 type Theme = "light" | "dark";
@@ -15,10 +16,10 @@ function applyTheme(theme: Theme) {
 
 function applyFaviconForTheme(theme: Theme) {
   const light = document.querySelector<HTMLLinkElement>(
-    'link[rel="icon"][data-theme="light"]'
+    'link[rel="icon"][data-theme="light"]',
   );
   const dark = document.querySelector<HTMLLinkElement>(
-    'link[rel="icon"][data-theme="dark"]'
+    'link[rel="icon"][data-theme="dark"]',
   );
 
   // Use media swapping so browsers pick the right one immediately.
@@ -64,15 +65,15 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
       type="button"
       onClick={toggle}
       className={[
-        "inline-flex h-10 items-center justify-center gap-2 rounded-full border border-[var(--border)] bg-[var(--surface)] px-4 text-sm font-semibold text-[var(--foreground)] transition",
-        "hover:bg-[var(--muted-bg)]",
+        "inline-flex cursor-pointer h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] px-4 text-sm font-semibold text-[var(--foreground)] transition",
+        "hover:bg-[var(--muted-bg)] shadow-2xl backdrop-blur-2xl",
         className,
       ].join(" ")}
       aria-label="Toggle theme"
     >
-      <span aria-hidden>{theme === "dark" ? "🌙" : "☀️"}</span>
-      <span className="hidden sm:inline">{theme === "dark" ? "Dark" : "Light"}</span>
+      <span aria-hidden>
+        {theme === "dark" ? <Moon size={16} /> : <Sun size={16} />}
+      </span>
     </button>
   );
 }
-

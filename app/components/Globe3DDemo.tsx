@@ -1,6 +1,8 @@
 "use client";
 
 import { Globe3D, GlobeMarker } from "@/components/ui/3d-globe";
+import { useTheme } from "next-themes";
+import { useEffect, useState } from "react";
 
 const sampleMarkers: GlobeMarker[] = [
   {
@@ -11,24 +13,34 @@ const sampleMarkers: GlobeMarker[] = [
   },
 ];
 
-export function Globe3DDemo() {
+export function Globe3DDemo({ globeSpeed }: { globeSpeed: number }) {
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
+
+  const isDark = resolvedTheme === "dark";
+
   return (
-    <Globe3D
-      markers={sampleMarkers}
-      config={{
-        atmosphereColor: "#4da6ff",
-        atmosphereIntensity: 12, // softer glow
-        bumpScale: 500,
-        autoRotateSpeed: 0.15, // slower premium rotation
-      }}
-      onMarkerClick={(marker) => {
-        console.log("Clicked marker:", marker.label);
-      }}
-      onMarkerHover={(marker) => {
-        if (marker) {
-          console.log("Hovering:", marker.label);
-        }
-      }}
-    />
+    <div
+      className="w-full h-full"
+      style={
+        !isDark
+          ? {
+              filter: "contrast(0.9) brightness(1.6)",
+            }
+          : undefined
+      }
+    >
+      <Globe3D
+        key={resolvedTheme}
+        markers={sampleMarkers}
+        config={{
+          bumpScale: 100,
+          autoRotateSpeed: globeSpeed,
+        }}
+      />
+    </div>
   );
 }

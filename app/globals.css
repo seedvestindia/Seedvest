@@ -14,12 +14,14 @@
   --border: #e6ebf2;
   --accent: #1e3a8a;
   --accent-soft: #dbeafe;
+  --basic: #000;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-sora);
+  --font-oswald: var(--font-oswald);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -27,24 +29,30 @@ html.dark {
   --background: #0a0d12;
   --foreground: #f4f7ff;
   --muted: #a3afc2;
-  --muted-bg: #121826;
-  --surface: #0f1522;
+  --muted-bg: #101010;
+  --surface: #121212;
   --surface-2: #0c111c;
   --border: #1c2638;
-  --accent: #1d4ed8;
+  --accent: #03163a;
   --accent-soft: #0b1d4a;
+  --basic: #fff;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sora), system-ui, -apple-system, "Segoe UI", sans-serif;
+  font-family:
+    var(--font-oswald),
+    system-ui,
+    -apple-system,
+    "Segoe UI",
+    sans-serif;
 }
 
 h1,
 h2,
 h3 {
-  font-family: "Times New Roman", Times, serif;
+  font-family: var(--font-oswald), Times, serif;
 }
 
 @keyframes animal-float {

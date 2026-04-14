@@ -1,10 +1,13 @@
-import { Geist_Mono, Sora, JetBrains_Mono } from "next/font/google";
+import { Geist_Mono, Sora, JetBrains_Mono, Oswald } from "next/font/google";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 
-const jetbrainsMono = JetBrains_Mono({subsets:['latin'],variable:'--font-mono'});
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
 
 const sora = Sora({
   variable: "--font-sora",
@@ -13,6 +16,11 @@ const sora = Sora({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const oswald = Oswald({
+  variable: "--font-oswald",
   subsets: ["latin"],
 });
 
@@ -30,7 +38,17 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn("h-full", "scroll-smooth", "antialiased", sora.variable, geistMono.variable, "font-mono", jetbrainsMono.variable)}
+      className={cn(
+        "h-full",
+        "scroll-smooth",
+        "antialiased",
+        sora.variable,
+        geistMono.variable,
+        oswald.variable,
+        "font-mono",
+        jetbrainsMono.variable,
+      )}
+      suppressHydrationWarning
     >
       <head>
         {/* Default: system-based favicon switching */}
