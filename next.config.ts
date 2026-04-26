@@ -9,7 +9,7 @@ const nextConfig = {
       },
     ],
   },
-  // allowedDevOrigins: ["172.23.10.94"],
+  allowedDevOrigins: ["192.168.29.59"],
 };
 
 module.exports = nextConfig;

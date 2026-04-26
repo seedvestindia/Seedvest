@@ -13,6 +13,11 @@ type HeroSlide = {
   ctaHref?: string;
 };
 
+const swipeConfidenceThreshold = 10000;
+const swipePower = (offset: number, velocity: number) => {
+  return Math.abs(offset) * velocity;
+};
+
 export function HeroSection() {
   const [globeSpeed, setGlobeSpeed] = useState(0.15);
 
@@ -209,6 +214,26 @@ export function HeroSection() {
                 initial="hidden"
                 animate="show"
                 exit="exit"
+                // Draggable
+                drag="x"
+                dragConstraints={{ left: 0, right: 0 }}
+                dragElastic={0.2}
+                onDragEnd={(e, { offset, velocity }) => {
+                  const swipe = swipePower(offset.x, velocity.x);
+
+                  if (swipe < -swipeConfidenceThreshold) {
+                    // swipe left → next slide
+                    setActiveHeroSlide(
+                      (prev) => (prev + 1) % heroSlides.length,
+                    );
+                  } else if (swipe > swipeConfidenceThreshold) {
+                    // swipe right → previous slide
+                    setActiveHeroSlide(
+                      (prev) =>
+                        (prev - 1 + heroSlides.length) % heroSlides.length,
+                    );
+                  }
+                }}
               >
                 <motion.h1
                   variants={item}
