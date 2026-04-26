@@ -3,6 +3,7 @@ import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { MessageCircle } from "lucide-react";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
@@ -97,10 +98,10 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <a
           href="#contact"
-          className="fixed bottom-5 right-5 z-50 inline-flex items-center justify-center rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/40"
-          aria-label="Get started"
+          className="fixed bottom-5 right-5 z-50 inline-flex gap-2 items-center justify-center rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/40"
+          aria-label="Chat with us"
         >
-          Get Started
+          <MessageCircle size={18} /> Chat with us
         </a>
         <SiteFooter />
       </body>

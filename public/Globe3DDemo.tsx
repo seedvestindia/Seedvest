@@ -8,7 +8,6 @@ const sampleMarkers: GlobeMarker[] = [
   {
     lat: 19.1197,
     lng: 72.8468,
-    // src: "/SeedVest_Logo.svg",
     src: "/White_Logo.svg",
     label: "Andheri",
   },

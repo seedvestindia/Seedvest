@@ -1,6 +1,6 @@
 "use client";
 
-import { AlertCircle, ChevronLeft, ChevronRight } from "lucide-react";
+import { AlertCircle, ChevronLeft, ChevronRight, Smile } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { Globe3DDemo } from "../Globe3DDemo";
 import { motion, AnimatePresence, Variants } from "framer-motion";
@@ -60,7 +60,7 @@ export function HeroSection() {
   useEffect(() => {
     const interval = window.setInterval(() => {
       setActiveHeroSlide((prev) => (prev + 1) % heroSlides.length);
-    }, 8000);
+    }, 14_000);
 
     return () => window.clearInterval(interval);
   }, [heroSlides.length]);
@@ -103,9 +103,17 @@ export function HeroSection() {
     },
   };
 
+  const isGlobeSlow = globeSpeed === 0.15;
+
+  const iconClass =
+    "w-4 h-4 transition-transform duration-300 group-hover:rotate-12";
+
+  const Icon = isGlobeSlow ? AlertCircle : Smile;
+  const label = isGlobeSlow ? "Don't Click" : "Told you";
+
   return (
     <motion.section
-      className="relative border-b border-[var(--border)] overflow-hidden py-10 lg:py-20"
+      className="relative border-b border-[var(--border)] overflow-hidden py-10 lg:py-25 lg:min-h-[calc(100vh-30px)]"
       style={{
         background:
           "linear-gradient(135deg, var(--accent), var(--surface), var(--accent))",
@@ -121,10 +129,60 @@ export function HeroSection() {
       }}
     >
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+        {/* Super Spinner Globe */}
+        {/* <button
+          onClick={() => setGlobeSpeed(globeSpeed === 0.15 ? 100 : 0.15)}
+          className="flex gap-2 items-center-safe rounded-full border border-[var(--border)] p-2 cursor-pointer"
+        >
+          <Icon className={iconClass} />
+          <span>{label}</span>
+        </button> */}
+
+        {/* Slider Dots */}
+        <div className="z-50 absolute bottom-4 flex items-center gap-2">
+          {heroSlides.map((_, idx) => {
+            const isActive = idx === activeHeroSlide;
+            return (
+              <button
+                key={idx}
+                onClick={() => setActiveHeroSlide(idx)}
+                className={[
+                  "h-2.5 w-2.5 rounded-full transition",
+                  isActive
+                    ? "bg-[var(--basic)]"
+                    : "bg-[var(--border)] hover:bg-[var(--accent)]/50",
+                ].join(" ")}
+              />
+            );
+          })}
+        </div>
+
+        {/* Slider Arrows */}
+        <div className="z-50 pointer-events-none absolute bottom-2 lg:bottom-[calc(25%-2.5rem)] right-4 lg:right-1/4 lg:translate-x-1/2 flex gap-3">
+          <button
+            onClick={() =>
+              setActiveHeroSlide(
+                (prev) => (prev - 1 + heroSlides.length) % heroSlides.length,
+              )
+            }
+            className="rounded-full border border-[var(--border)] p-2 cursor-pointer pointer-events-auto"
+          >
+            <ChevronLeft />
+          </button>
+          <button
+            onClick={() =>
+              setActiveHeroSlide((prev) => (prev + 1) % heroSlides.length)
+            }
+            className="rounded-full border border-[var(--border)] p-2 cursor-pointer pointer-events-auto"
+          >
+            <ChevronRight />
+          </button>
+        </div>
+
         <div className="flex lg:grid lg:grid-cols-2 items-center gap-8 relative">
           {/* LEFT CONTENT */}
           <div className="z-10">
-            <CanvasText
+            {/* <CanvasText
               text="SeedVest"
               backgroundClassName="bg-blue-600 dark:bg-blue-700"
               colors={[
@@ -141,11 +199,12 @@ export function HeroSection() {
               ]}
               lineGap={4}
               animationDuration={20}
-            />
+            /> */}
 
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeHeroSlide}
+                className="min-h-[35lvh]"
                 variants={container}
                 initial="hidden"
                 animate="show"
@@ -160,7 +219,7 @@ export function HeroSection() {
 
                 <motion.p
                   variants={item}
-                  className="mt-4 max-w-xl text-base leading-relaxed text-gray-600 dark:text-gray-400"
+                  className="mt-4 max-w-xl text-base leading-relaxed text-[var(--muted)]"
                 >
                   {currentHeroSlide.subtitle}
                 </motion.p>
@@ -180,72 +239,6 @@ export function HeroSection() {
                 )}
               </motion.div>
             </AnimatePresence>
-
-            {/* SLIDER CONTROLS */}
-            <div className="mt-10 flex items-center justify-between">
-              {/* Dots */}
-              <div className="flex items-center gap-2">
-                {heroSlides.map((_, idx) => {
-                  const isActive = idx === activeHeroSlide;
-                  return (
-                    <button
-                      key={idx}
-                      onClick={() => setActiveHeroSlide(idx)}
-                      className={[
-                        "h-2.5 w-2.5 rounded-full transition",
-                        isActive
-                          ? "bg-[var(--basic)]"
-                          : "bg-[var(--border)] hover:bg-[var(--accent)]/50",
-                      ].join(" ")}
-                    />
-                  );
-                })}
-              </div>
-
-              {/* Arrows */}
-              <div className="flex gap-3">
-                <button
-                  onClick={() =>
-                    setActiveHeroSlide(
-                      (prev) =>
-                        (prev - 1 + heroSlides.length) % heroSlides.length,
-                    )
-                  }
-                  className="rounded-full border border-[var(--border)] p-3 cursor-pointer"
-                >
-                  <ChevronLeft />
-                </button>
-                <button
-                  onClick={() =>
-                    setActiveHeroSlide((prev) => (prev + 1) % heroSlides.length)
-                  }
-                  className="rounded-full border border-[var(--border)] p-3 cursor-pointer"
-                >
-                  <ChevronRight />
-                </button>
-                {/* <button
-                  onClick={() =>
-                    setGlobeSpeed(globeSpeed === 0.15 ? 100 : 0.15)
-                  }
-                  className="
-    z-10
-    flex items-center gap-2
-    px-4 py-2
-    rounded-xl
-    bg-red-500 text-white
-    font-medium
-    shadow-md
-    transition-all duration-300
-    hover:bg-red-600 hover:shadow-lg
-    active:scale-95
-    group
-  "
-                >
-                  <AlertCircle className="w-4 h-4 transition-transform duration-300 group-hover:rotate-12" />
-                  <span>Don't Click</span>
-                </button> */}
-              </div>
-            </div>
           </div>
 
           {/* RIGHT GLOBE */}

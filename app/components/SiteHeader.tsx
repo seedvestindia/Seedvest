@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { ThemeToggle } from "./ThemeToggle";
+import WhiteLogo from "@/assets/svg/WhiteLogo";
+import SeedVestLogo from "@/assets/svg/SeedVestLogo ";
 
 const navItems = [
   { label: "Real Estate", href: "#real-estate", tone: "primary" },
@@ -68,29 +70,28 @@ export function SiteHeader() {
           className="text-lg font-semibold tracking-tight text-[var(--foreground)]"
           onClick={() => setOpen(false)}
         >
-          SeedVest
+          <SeedVestLogo />
         </Link>
 
-        <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className={[
-                "rounded-lg px-3 py-2 font-medium transition-all",
-                item.tone === "primary"
-                  ? "text-sm text-[var(--foreground)] hover:bg-[var(--muted-bg)]"
-                  : "text-xs text-[var(--muted)] hover:bg-[var(--muted-bg)] hover:text-sm hover:text-[var(--foreground)]",
-              ].join(" ")}
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
-
-        <div className="hidden items-center gap-2 lg:flex">
+        <div className="hidden items-center gap-20 lg:flex">
+          <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className={[
+                  "rounded-lg px-3 py-2 font-medium transition-all",
+                  item.tone === "primary"
+                    ? "text-[var(--foreground)] hover:bg-[var(--muted-bg)]"
+                    : "text-sm text-[var(--muted)] hover:bg-[var(--muted-bg)] hover:text-base hover:text-[var(--foreground)]",
+                ].join(" ")}
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
           <ThemeToggle />
-          <a
+          {/* <a
             href={WHATSAPP_URL}
             target="_blank"
             rel="noopener noreferrer"
@@ -98,7 +99,7 @@ export function SiteHeader() {
           >
             <span aria-hidden>💬</span>
             Chat with us
-          </a>
+          </a> */}
         </div>
 
         <div className="lg:hidden">
@@ -151,7 +152,10 @@ export function SiteHeader() {
               </button>
             </div>
 
-            <nav className="flex-1 space-y-1 px-3 py-4 [background-color:var(--surface)]" aria-label="Mobile">
+            <nav
+              className="flex-1 space-y-1 px-3 py-4 [background-color:var(--surface)]"
+              aria-label="Mobile"
+            >
               {navItems.map((item) => (
                 <a
                   key={item.href}
