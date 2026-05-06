@@ -40,7 +40,7 @@ export function AnimalOrbitAnimation() {
   useEffect(() => {
     const interval = setInterval(() => {
       setActive((prev) => (prev + 1) % animals.length);
-    }, 2600);
+    }, 2700);
 
     return () => clearInterval(interval);
   }, []);
