@@ -103,3 +103,22 @@ h3 {
   animation: paw-fade 3s ease-in-out infinite;
   animation-delay: 1.2s;
 }
+
+.orbit-mask {
+  /* Show only 90deg (1/4 circle) */
+  -webkit-mask-image: conic-gradient(
+    from 298deg,
+    transparent 0deg,
+    black 20deg,
+    black 90deg,
+    transparent 120deg
+  );
+
+  mask-image: conic-gradient(
+    from 298deg,
+    transparent 0deg,
+    black 20deg,
+    black 90deg,
+    transparent 120deg
+  );
+}

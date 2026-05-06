@@ -65,8 +65,8 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
       type="button"
       onClick={toggle}
       className={[
-        "inline-flex cursor-pointer h-10 w-10 items-center justify-center rounded-full border border-[var(--border)] px-4 text-sm font-semibold text-[var(--foreground)] transition",
-        "hover:bg-[var(--muted-bg)] shadow-2xl backdrop-blur-2xl",
+        "inline-flex cursor-pointer h-10 w-10 items-center justify-center rounded-full px-4 text-sm font-semibold text-[var(--foreground)] transition",
+        "shadow-2xl backdrop-blur-2xl",
         className,
       ].join(" ")}
       aria-label="Toggle theme"

@@ -48,9 +48,9 @@ export default function Home() {
     <>
       <HeroSection />
 
-      <PhotosSection />
+      {/* <PhotosSection /> */}
 
-      <ServicesSection />
+      {/* <ServicesSection /> */}
 
       <KnowYourAnimalSection />
 
