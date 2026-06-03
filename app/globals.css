@@ -122,3 +122,44 @@ h3 {
     transparent 120deg
   );
 }
+
+
+/* Know Your Animal Details */
+.animal-marquee {
+  overflow: hidden;
+  width: 100%;
+}
+
+.animal-marquee-track {
+  display: flex;
+  gap: 24px;
+  width: max-content;
+  animation: animal-marquee 45s linear infinite;
+}
+
+.animal-marquee-track-reverse {
+  animation-direction: reverse;
+}
+
+.animal-marquee:hover .animal-marquee-track {
+  animation-play-state: paused;
+}
+
+@keyframes animal-marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(calc(-50% - 12px));
+  }
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
