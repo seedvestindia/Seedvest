@@ -73,6 +73,8 @@ interface Globe3DProps {
   onMarkerClick?: (marker: GlobeMarker) => void;
   /** Callback when a marker is hovered */
   onMarkerHover?: (marker: GlobeMarker | null) => void;
+  /** Callback when the globe is fully loaded */
+  onLoaded?: () => void;
 }
 
 // ============================================================================
@@ -398,15 +400,23 @@ interface SceneProps {
   config: Required<Globe3DConfig>;
   onMarkerClick?: (marker: GlobeMarker) => void;
   onMarkerHover?: (marker: GlobeMarker | null) => void;
+  onLoaded?: () => void;
 }
 
-function Scene({ markers, config, onMarkerClick, onMarkerHover }: SceneProps) {
+function Scene({
+  markers,
+  config,
+  onMarkerClick,
+  onMarkerHover,
+  onLoaded,
+}: SceneProps) {
   const { camera } = useThree();
 
   // Set initial camera position (pulled back to accommodate markers)
   React.useEffect(() => {
     camera.position.set(0, 0, config.radius * 3.5);
     camera.lookAt(0, 0, 0);
+    onLoaded?.();
   }, [camera, config.radius]);
 
   return (
@@ -450,7 +460,7 @@ function Scene({ markers, config, onMarkerClick, onMarkerHover }: SceneProps) {
         minDistance={config.minDistance}
         maxDistance={config.maxDistance}
         rotateSpeed={0.4}
-        autoRotate={config.autoRotateSpeed > 0}
+        autoRotate={config.autoRotateSpeed !== 0}
         autoRotateSpeed={config.autoRotateSpeed}
         enableDamping
         dampingFactor={0.1}
@@ -509,6 +519,7 @@ export function Globe3D({
   className,
   onMarkerClick,
   onMarkerHover,
+  onLoaded,
 }: Globe3DProps) {
   const mergedConfig = useMemo(
     () => ({ ...defaultConfig, ...config }),
@@ -540,6 +551,7 @@ export function Globe3D({
             config={mergedConfig}
             onMarkerClick={onMarkerClick}
             onMarkerHover={onMarkerHover}
+            onLoaded={onLoaded}
           />
         </Suspense>
       </Canvas>

@@ -61,6 +61,7 @@ export function HeroSection() {
   );
 
   const [activeHeroSlide, setActiveHeroSlide] = useState(0);
+  const [isGlobeLoaded, setIsGlobeLoaded] = useState(false);
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -71,6 +72,18 @@ export function HeroSection() {
   }, [heroSlides.length]);
 
   const currentHeroSlide = heroSlides[activeHeroSlide];
+
+  const GlobeSpin = ({
+    speed = 100,
+    reverse = false,
+  }: {
+    speed?: number;
+    reverse?: boolean;
+  } = {}) =>
+    setTimeout(() => {
+      setGlobeSpeed(reverse ? -speed : speed);
+      setTimeout(() => setGlobeSpeed(0.15), 150);
+    }, 100);
 
   const container: Variants = {
     hidden: {},
@@ -107,6 +120,13 @@ export function HeroSection() {
       },
     },
   };
+
+  useEffect(() => {
+    setTimeout(() => {
+      setGlobeSpeed(100);
+      setTimeout(() => setGlobeSpeed(0.15), 1_000);
+    }, 0);
+  }, []);
 
   const isGlobeSlow = globeSpeed === 0.15;
 
@@ -165,19 +185,21 @@ export function HeroSection() {
         {/* Slider Arrows */}
         <div className="z-50 pointer-events-none absolute bottom-2 lg:bottom-[calc(25%-2.5rem)] right-4 lg:right-1/4 lg:translate-x-1/2 flex gap-3">
           <button
-            onClick={() =>
+            onClick={() => {
               setActiveHeroSlide(
                 (prev) => (prev - 1 + heroSlides.length) % heroSlides.length,
-              )
-            }
+              );
+              GlobeSpin({ reverse: true });
+            }}
             className="rounded-full border border-[var(--border)] p-2 cursor-pointer pointer-events-auto"
           >
             <ChevronLeft />
           </button>
           <button
-            onClick={() =>
-              setActiveHeroSlide((prev) => (prev + 1) % heroSlides.length)
-            }
+            onClick={() => {
+              setActiveHeroSlide((prev) => (prev + 1) % heroSlides.length);
+              GlobeSpin();
+            }}
             className="rounded-full border border-[var(--border)] p-2 cursor-pointer pointer-events-auto"
           >
             <ChevronRight />
@@ -212,7 +234,7 @@ export function HeroSection() {
                 className="min-h-[35lvh]"
                 variants={container}
                 initial="hidden"
-                animate="show"
+                animate={isGlobeLoaded ? "show" : "hidden"} // only matters on first render
                 exit="exit"
                 // Draggable
                 drag="x"
@@ -268,7 +290,10 @@ export function HeroSection() {
 
           {/* RIGHT GLOBE */}
           <div className="absolute lg:top-1/2 translate-y-1/2 lg:-translate-y-1/2 right-0 lg:right-[-30%] w-full h-[500px]">
-            <Globe3DDemo globeSpeed={globeSpeed} />
+            <Globe3DDemo
+              globeSpeed={globeSpeed}
+              onGlobeLoaded={() => setIsGlobeLoaded(true)}
+            />
           </div>
         </div>
       </div>

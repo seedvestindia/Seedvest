@@ -14,7 +14,13 @@ const sampleMarkers: GlobeMarker[] = [
   },
 ];
 
-export function Globe3DDemo({ globeSpeed }: { globeSpeed: number }) {
+export function Globe3DDemo({
+  globeSpeed,
+  onGlobeLoaded,
+}: {
+  globeSpeed: number;
+  onGlobeLoaded: () => void;
+}) {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -37,6 +43,7 @@ export function Globe3DDemo({ globeSpeed }: { globeSpeed: number }) {
       <Globe3D
         key={resolvedTheme}
         markers={sampleMarkers}
+        onLoaded={onGlobeLoaded}
         config={{
           bumpScale: 100,
           autoRotateSpeed: globeSpeed,
