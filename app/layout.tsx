@@ -1,13 +1,30 @@
-import { Geist_Mono, Sora, JetBrains_Mono, Oswald } from "next/font/google";
+import { cn } from "@/lib/utils";
+import { MessageCircle } from "lucide-react";
+import {
+  Geist,
+  Geist_Mono,
+  JetBrains_Mono,
+  Oswald,
+  Sora,
+  Urbanist,
+} from "next/font/google";
 import { SiteFooter } from "./components/SiteFooter";
 import { SiteHeader } from "./components/SiteHeader";
 import "./globals.css";
-import { cn } from "@/lib/utils";
-import { MessageCircle } from "lucide-react";
 
 const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-mono",
+  variable: "--font-jetbrains-mono",
+});
+
+const geist = Geist({
+  subsets: ["latin"],
+  variable: "--font-geist",
+});
+
+const urbanist = Urbanist({
+  subsets: ["latin"],
+  variable: "--font-urbanist",
 });
 
 const sora = Sora({
@@ -43,11 +60,11 @@ export default function RootLayout({
         "h-full",
         "scroll-smooth",
         "antialiased",
-        sora.variable,
-        geistMono.variable,
+        // sora.variable,
+        geist.variable,
         oswald.variable,
-        "font-mono",
         jetbrainsMono.variable,
+        urbanist.variable,
       )}
       suppressHydrationWarning
     >
