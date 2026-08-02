@@ -113,8 +113,7 @@ h6 {
   animation-delay: 1.2s;
 }
 
-.orbit-mask {
-  /* Show only 90deg (1/4 circle) */
+/* .orbit-mask {
   -webkit-mask-image: conic-gradient(
     from 298deg,
     transparent 0deg,
@@ -129,6 +128,25 @@ h6 {
     black 20deg,
     black 90deg,
     transparent 120deg
+  );
+} */
+
+.orbit-mask {
+  /* Show a wider ~110deg arc (was 70deg), still well under a semicircle */
+  -webkit-mask-image: conic-gradient(
+    from 288deg,
+    transparent 0deg,
+    black 15deg,
+    black 125deg,
+    transparent 140deg
+  );
+
+  mask-image: conic-gradient(
+    from 288deg,
+    transparent 0deg,
+    black 15deg,
+    black 125deg,
+    transparent 140deg
   );
 }
 

@@ -11,7 +11,7 @@ export function ArticlesSection({ articles }: { articles: Article[] }) {
       className="border-b border-[var(--border)] py-16 sm:py-20"
       aria-labelledby="articles-heading"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2
           id="articles-heading"
           className="text-2xl font-semibold tracking-tight text-[var(--foreground)]"

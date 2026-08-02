@@ -2,26 +2,46 @@
 
 import { useEffect, useState } from "react";
 import { motion, useAnimation } from "framer-motion";
+import Image from "next/image";
 
 const animals = [
-  { name: "Confident Bull", emoji: "🐂" },
-  { name: "Cautious Bear", emoji: "🐻" },
-  { name: "Agile Rabbit", emoji: "🐇" },
-  { name: "Opportunistic Stag", emoji: "🦌" },
-  { name: "Overeager Pig", emoji: "🐖" },
-  { name: "Steady Tortoise", emoji: "🐢" },
-  { name: "Risk-Averse Chicken", emoji: "🐔" },
-  { name: "Avoidant Ostrich", emoji: "🦩" },
-  { name: "Follower Sheep", emoji: "🐑" },
-  { name: "Influential Whale", emoji: "🐋" },
-  { name: "Strategic Wolf", emoji: "🐺" },
-  { name: "Dominant Elephant", emoji: "🐘" },
+  { name: "Confident Bull", emoji: "🐂", image: "/images/png/Bull Venus.png" },
+  { name: "Cautious Bear", emoji: "🐻", image: "/images/png/Bear Saturn.png" },
+  {
+    name: "Agile Rabbit",
+    emoji: "🐇",
+    image: "/images/png/Rabbit Mercury.png",
+  },
+  {
+    name: "Opportunistic Stag",
+    emoji: "🦌",
+    image: "/images/png/Stag Jupiter.png",
+  },
+  {
+    name: "Steady Turtle",
+    emoji: "🐢",
+    image: "/images/png/Turtle Earth.png",
+  },
+  {
+    name: "Avoidant Ostrich",
+    emoji: "🦩",
+    image: "/images/png/Ostrich Uranus.png",
+  },
+  { name: "Follower Sheep", emoji: "🐑", image: "/images/png/Sheep Pluto.png" },
+  {
+    name: "Influential Whale",
+    emoji: "🐋",
+    image: "/images/png/Whale Neptune.png",
+  },
+  { name: "Strategic Wolf", emoji: "🐺", image: "/images/png/Wolf Mars.png" },
 ];
 
-const radius = 120;
+const radius = 190; // Increased spacing between orbiting images
+const ORBIT_DURATION = 28;
 
 export function AnimalOrbitAnimation() {
   const controls = useAnimation();
+  const counterControls = useAnimation();
   const [active, setActive] = useState(0);
 
   // Smooth infinite rotation
@@ -31,10 +51,20 @@ export function AnimalOrbitAnimation() {
       transition: {
         repeat: Infinity,
         ease: "linear",
-        duration: 28,
+        duration: ORBIT_DURATION,
       },
     });
-  }, [controls]);
+
+    // Counter-rotate at the same rate so each image visually stays upright
+    counterControls.start({
+      rotate: -360,
+      transition: {
+        repeat: Infinity,
+        ease: "linear",
+        duration: ORBIT_DURATION,
+      },
+    });
+  }, [controls, counterControls]);
 
   // Change active independently (no layout jump)
   useEffect(() => {
@@ -46,7 +76,7 @@ export function AnimalOrbitAnimation() {
   }, []);
 
   return (
-    <div className="relative flex h-[320px] w-[320px] items-center justify-center sm:h-[400px] sm:w-[400px]">
+    <div className="relative flex flex-1 h-[320px] sm:h-[470px] items-center justify-center">
       {/* MASKED ORBIT CONTAINER */}
       <div className="orbit-mask absolute inset-0 flex items-center justify-center">
         <motion.div animate={controls} className="absolute h-full w-full">
@@ -64,10 +94,17 @@ export function AnimalOrbitAnimation() {
                 }}
               >
                 <motion.div
+                  animate={counterControls}
                   transition={{ duration: 0.3 }}
                   className="flex items-center justify-center"
                 >
-                  <span className="text-xl">{animal.emoji}</span>
+                  <Image
+                    src={animal.image}
+                    alt={animal.name}
+                    width={100}
+                    height={100}
+                    draggable={false}
+                  />
                 </motion.div>
               </div>
             );
@@ -91,10 +128,13 @@ export function AnimalOrbitAnimation() {
         }}
         className="z-10 text-center"
       >
-        <div className="text-3xl">{animals[active].emoji}</div>
-        <p className="mt-1 text-xs text-[var(--muted)]">
-          {animals[active].name}
-        </p>
+        <Image
+          src={animals[active].image}
+          alt={animals[active].name}
+          width={180}
+          height={180}
+          draggable={false}
+        />
       </motion.div>
     </div>
   );

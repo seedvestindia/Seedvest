@@ -1,7 +1,7 @@
 export function ServicesSection() {
   return (
     <section className="py-16 sm:py-20" aria-label="Services overview">
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2 className="text-2xl font-semibold tracking-tight text-[var(--foreground)]">
           What we help with
         </h2>

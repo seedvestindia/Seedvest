@@ -7,7 +7,7 @@ export function ContactSection() {
       className="py-16 sm:py-24"
       aria-labelledby="contact-heading"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="overflow-hidden rounded-3xl border border-[var(--border)] bg-[var(--surface)] shadow-sm">
           <div className="grid lg:grid-cols-2">
             <div className="border-b border-[var(--border)] p-8 lg:border-b-0 lg:border-r lg:p-10">

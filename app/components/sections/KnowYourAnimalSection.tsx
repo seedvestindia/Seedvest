@@ -13,11 +13,11 @@ export function KnowYourAnimalSection() {
         aria-hidden
       />
 
-      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Grid Layout */}
         <div className="grid items-center gap-12 md:grid-cols-2">
           {/* LEFT SIDE — Animation Placeholder */}
-          <div className="flex w-full items-center justify-center">
+          <div className="flex w-full items-center">
             <AnimatePresence mode="wait">
               <AnimalOrbitAnimation />
             </AnimatePresence>

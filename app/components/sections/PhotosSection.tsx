@@ -7,7 +7,7 @@ export function PhotosSection() {
       className="border-b border-[var(--border)] py-16 sm:py-20"
       aria-labelledby="photos-heading"
     >
-      <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <h2
           id="photos-heading"
           className="text-2xl font-semibold tracking-tight text-[var(--foreground)]"
