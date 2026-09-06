@@ -178,7 +178,7 @@ export function SiteHeader() {
                   href={WHATSAPP_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 rounded-full bg-[var(--accent)] px-4 py-3 text-sm font-semibold text-white"
+                  className="flex items-center justify-center gap-2 rounded-full bg-[var(--accent-soft)] px-4 py-3 text-sm font-semibold text-white"
                   onClick={() => setOpen(false)}
                 >
                   Chat with us
