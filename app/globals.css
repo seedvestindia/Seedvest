@@ -12,6 +12,7 @@
   --surface: #ffffff;
   --surface-2: #f7f9fc;
   --border: #e6ebf2;
+  --text: #2f85cb;
   --accent: #1e3a8a;
   --accent-soft: #dbeafe;
   --basic: #000;
@@ -44,14 +45,21 @@ html.dark {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family:
-    /* var(--font-oswald), */
-    /* var(--font-urbanist), */
-    /* var(--font-jetbrains-mono), */
-    /* var(--font-geist), */
-    /* system-ui, */
-    /* -apple-system, */
-    /* "Segoe UI", */ sans-serif;
+  font-family: sans-serif;
+}
+
+/* Chrome, Edge, Safari */
+body::-webkit-scrollbar {
+  width: 4px;
+}
+
+body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: var(--text);
+  border-radius: 999px;
 }
 
 h1,
@@ -62,6 +70,10 @@ h5,
 h6 {
   /* font-family: var(--font-oswald), Times, serif; */
   font-family: var(--font-urbanist), Times, serif;
+}
+
+button {
+  cursor: pointer;
 }
 
 @keyframes animal-float {

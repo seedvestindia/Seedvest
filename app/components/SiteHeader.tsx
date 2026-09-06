@@ -111,7 +111,7 @@ export function SiteHeader() {
       <div className="lg:hidden">
         <div
           className={[
-            "fixed inset-0 z-50 transition",
+            "fixed inset-0 z-100 h-dvh transition",
             open ? "pointer-events-auto" : "pointer-events-none",
           ].join(" ")}
           aria-hidden={!open}
@@ -127,14 +127,14 @@ export function SiteHeader() {
           <aside
             id="mobile-nav"
             className={[
-              "absolute left-0 top-0 flex h-full w-80 max-w-[85vw] flex-col border-r border-[var(--border)] shadow-xl transition-transform [background-color:var(--surface)]",
+              "fixed left-0 top-0 z-[101] flex h-dvh w-80 max-w-[85vw] flex-col border-r border-[var(--border)] bg-[var(--surface)] shadow-xl transition-transform",
               open ? "translate-x-0" : "-translate-x-full",
             ].join(" ")}
             role="dialog"
             aria-modal="true"
             aria-label="Navigation"
           >
-            <div className="flex items-center justify-between gap-3 border-b border-[var(--border)] px-4 py-4">
+            <div className="flex shrink-0 items-center justify-between gap-3 border-b border-[var(--border)] px-4 py-4">
               <Link
                 href="/"
                 className="text-base font-semibold tracking-tight text-[var(--foreground)]"
@@ -142,6 +142,7 @@ export function SiteHeader() {
               >
                 SeedVest
               </Link>
+
               <button
                 type="button"
                 onClick={() => setOpen(false)}
@@ -153,7 +154,7 @@ export function SiteHeader() {
             </div>
 
             <nav
-              className="flex-1 space-y-1 px-3 py-4 [background-color:var(--surface)]"
+              className="flex flex-1 flex-col space-y-1 overflow-y-auto px-3 py-4"
               aria-label="Mobile"
             >
               {navItems.map((item) => (
@@ -161,10 +162,10 @@ export function SiteHeader() {
                   key={item.href}
                   href={item.href}
                   className={[
-                    "block rounded-lg px-3 py-3 font-medium hover:bg-[var(--muted-bg)]",
+                    "block rounded-lg px-3 py-3 text-sm font-medium hover:bg-[var(--muted-bg)]",
                     item.tone === "primary"
-                      ? "text-sm text-[var(--foreground)]"
-                      : "text-sm text-[var(--muted)] hover:text-[var(--foreground)]",
+                      ? "text-[var(--foreground)]"
+                      : "text-[var(--muted)] hover:text-[var(--foreground)]",
                   ].join(" ")}
                   onClick={() => setOpen(false)}
                 >
@@ -172,7 +173,7 @@ export function SiteHeader() {
                 </a>
               ))}
 
-              <div className="pt-2">
+              <div className="mt-auto pt-2">
                 <a
                   href={WHATSAPP_URL}
                   target="_blank"

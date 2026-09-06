@@ -153,18 +153,18 @@ export function HeroSection() {
         ease: "linear",
       }}
     >
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl py-16 lg:px-8">
         {/* Super Spinner Globe */}
         {/* <button
           onClick={() => setGlobeSpeed(globeSpeed === 0.15 ? 100 : 0.15)}
-          className="flex gap-2 items-center-safe rounded-full border border-[var(--border)] p-2 cursor-pointer"
+          className="flex gap-2 items-center-safe rounded-full border border-[var(--border)] p-2"
         >
           <Icon className={iconClass} />
           <span>{label}</span>
         </button> */}
 
         {/* Slider Dots */}
-        <div className="z-50 absolute bottom-4 flex items-center gap-2">
+        <div className="px-4 sm:px-6 z-10 absolute bottom-4 flex items-center gap-2">
           {heroSlides.map((_, idx) => {
             const isActive = idx === activeHeroSlide;
             return (
@@ -183,7 +183,7 @@ export function HeroSection() {
         </div>
 
         {/* Slider Arrows */}
-        <div className="z-50 pointer-events-none absolute bottom-2 lg:bottom-[calc(25%-2.5rem)] right-4 lg:right-1/4 lg:translate-x-1/2 flex gap-3">
+        <div className="px-4 sm:px-6 z-10 pointer-events-none absolute bottom-2 lg:bottom-[calc(25%-2.5rem)] right-4 lg:right-1/4 lg:translate-x-1/2 flex gap-3">
           <button
             onClick={() => {
               setActiveHeroSlide(
@@ -191,7 +191,7 @@ export function HeroSection() {
               );
               GlobeSpin({ reverse: true });
             }}
-            className="rounded-full border border-[var(--border)] p-2 cursor-pointer pointer-events-auto"
+            className="rounded-full border border-[var(--border)] p-2 pointer-events-auto"
           >
             <ChevronLeft />
           </button>
@@ -200,7 +200,7 @@ export function HeroSection() {
               setActiveHeroSlide((prev) => (prev + 1) % heroSlides.length);
               GlobeSpin();
             }}
-            className="rounded-full border border-[var(--border)] p-2 cursor-pointer pointer-events-auto"
+            className="rounded-full border border-[var(--border)] p-2 pointer-events-auto"
           >
             <ChevronRight />
           </button>
@@ -231,7 +231,7 @@ export function HeroSection() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeHeroSlide}
-                className="min-h-[35lvh]"
+                className="h-[40lvh] px-4 sm:px-6"
                 variants={container}
                 initial="hidden"
                 animate={isGlobeLoaded ? "show" : "hidden"} // only matters on first render

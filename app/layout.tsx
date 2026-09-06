@@ -58,7 +58,6 @@ export default function RootLayout({
       lang="en"
       className={cn(
         "h-full",
-        "scroll-smooth",
         "antialiased",
         // sora.variable,
         geist.variable,
@@ -115,7 +114,7 @@ export default function RootLayout({
         <main className="flex-1">{children}</main>
         <a
           href="#contact"
-          className="fixed bottom-5 right-5 z-50 inline-flex gap-2 items-center justify-center rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/40"
+          className="hidden lg:inline-flex fixed bottom-5 right-5 z-50 gap-2 items-center justify-center rounded-full bg-[var(--accent)] px-5 py-3 text-sm font-semibold text-white shadow-lg transition hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-[var(--accent)]/40"
           aria-label="Chat with us"
         >
           <MessageCircle size={18} /> Chat with us

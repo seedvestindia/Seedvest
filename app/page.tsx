@@ -6,59 +6,38 @@ import { KnowYourAnimalDetailsSection } from "./components/sections/KnowYourAnim
 import { ArticlesSection } from "./components/sections/ArticlesSection";
 import { FaqSection } from "./components/sections/FaqSection";
 import { ContactSection } from "./components/sections/ContactSection";
-
-const articles = [
-  {
-    title: "Building a balanced portfolio",
-    excerpt:
-      "How to align property, equities, and protection so your plan stays steady through market cycles.",
-    date: "Mar 2026",
-  },
-  {
-    title: "Insurance beyond the basics",
-    excerpt:
-      "The questions worth asking before you renew—so coverage matches how your life actually looks.",
-    date: "Feb 2026",
-  },
-  {
-    title: "Tools that save real time",
-    excerpt:
-      "A shortlist of calculators and workflows we use with clients to keep decisions clear and fast.",
-    date: "Jan 2026",
-  },
-];
-
-const faqItems = [
-  {
-    q: "How do I get started?",
-    a: "Use Contact Us or WhatsApp to share your goals. We will suggest a short intro call and outline next steps—no obligation.",
-  },
-  {
-    q: "Do you cover all areas you list in the header?",
-    a: "Yes. Real estate, investments, insurance, and planning tools are part of how we help clients see the full picture.",
-  },
-  {
-    q: "Is my information kept private?",
-    a: "We treat conversations and documents as confidential and only use them to support your planning.",
-  },
-];
+import { WelcomeSection } from "./components/sections/WelcomeSection";
+import { PersonasSection } from "./components/sections/PersonasSection";
+import { SolutionsSection } from "./components/sections/SolutionsSection";
+import { InsightsPreviewSection } from "./components/sections/InsightsPreviewSection";
+import { Suspense } from "react";
 
 export default function Home() {
   return (
     <>
       <HeroSection />
 
+      <WelcomeSection />
+
+      <PersonasSection />
+
+      <SolutionsSection />
+
+      <InsightsPreviewSection />
+
       {/* <PhotosSection /> */}
 
       {/* <ServicesSection /> */}
 
-      <KnowYourAnimalSection />
+      {/* <KnowYourAnimalSection /> */}
 
-      <KnowYourAnimalDetailsSection />
+      {/* <KnowYourAnimalDetailsSection /> */}
 
-      <ArticlesSection articles={articles} />
+      <Suspense fallback={<div>Loading articles...</div>}>
+        <ArticlesSection />
+      </Suspense>
 
-      <FaqSection items={faqItems} />
+      <FaqSection />
 
       <ContactSection />
     </>
