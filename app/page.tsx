@@ -23,7 +23,7 @@ export default function Home() {
 
       <SolutionsSection />
 
-      <InsightsPreviewSection />
+      {/* <InsightsPreviewSection /> */}
 
       {/* <PhotosSection /> */}
 
