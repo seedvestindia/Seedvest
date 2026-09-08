@@ -8,8 +8,8 @@ import {
   Sora,
   Urbanist,
 } from "next/font/google";
-import { SiteFooter } from "./components/SiteFooter";
-import { SiteHeader } from "./components/SiteHeader";
+import { SiteFooter } from "./components/layout/SiteFooter";
+import { SiteHeader } from "./components/layout/SiteHeader";
 import "./globals.css";
 
 const jetbrainsMono = JetBrains_Mono({

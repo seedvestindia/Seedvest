@@ -1,5 +1,5 @@
 import { AnimatePresence } from "framer-motion";
-import { AnimalOrbitAnimation } from "../AnimalAnimation";
+import { AnimalOrbitAnimation } from "../visuals/AnimalAnimation";
 
 export function KnowYourAnimalSection() {
   return (

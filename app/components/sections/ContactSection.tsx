@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
-import { ContactForm } from "../ContactForm";
+import { ContactForm } from "../forms/ContactForm";
 
 function IconPhone({ className }: { className?: string }) {
   return (

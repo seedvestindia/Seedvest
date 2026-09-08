@@ -2,9 +2,12 @@
 
 import { AlertCircle, ChevronLeft, ChevronRight, Smile } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
-import { Globe3DDemo } from "../Globe3DDemo";
+import { Globe3DDemo } from "../visuals/Globe3DDemo";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 import { CanvasText } from "@/components/ui/canvas-text";
+import { RainbowButton } from "@/components/ui/rainbow-button";
+import { ShinyButton } from "@/components/ui/shiny-button";
+import { InteractiveHoverButton } from "@/components/ui/interactive-hover-button";
 
 type HeroSlide = {
   title: string;
@@ -276,11 +279,12 @@ export function HeroSection() {
                     variants={item}
                     className="mt-8 flex flex-wrap items-center gap-3"
                   >
-                    <a
-                      href={currentHeroSlide.ctaHref}
-                      className="inline-flex items-center justify-center rounded-full bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700"
-                    >
-                      {currentHeroSlide.ctaLabel}
+                    <a href={currentHeroSlide.ctaHref}>
+                      <RainbowButton className="text-white dark:text-black">
+                        {currentHeroSlide.ctaLabel}
+                      </RainbowButton>
+                      {/* <ShinyButton>Shiny Button</ShinyButton>
+                      <InteractiveHoverButton>Interactive Hover Button</InteractiveHoverButton> */}
                     </a>
                   </motion.div>
                 )}
