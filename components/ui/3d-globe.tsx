@@ -479,7 +479,7 @@ function Scene({
 function LoadingFallback() {
   return (
     <Html center>
-      <div className="flex items-center justify-center ml-14">
+      <div className="flex items-center justify-center ml-2.5">
         <svg
           viewBox="0 0 80 80"
           fill="none"

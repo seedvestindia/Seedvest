@@ -186,7 +186,7 @@ export function HeroSection() {
         </div>
 
         {/* Slider Arrows */}
-        <div className="px-4 sm:px-6 z-10 pointer-events-none absolute bottom-2 lg:bottom-[calc(25%-2.5rem)] right-4 lg:right-1/4 lg:translate-x-1/2 flex gap-3">
+        <div className="px-4 sm:px-6 z-10 pointer-events-none absolute bottom-2 lg:bottom-[calc(25%-2.5rem)] right-4 lg:right-[calc(25%-5px)] lg:translate-x-1/2 flex gap-3">
           <button
             onClick={() => {
               setActiveHeroSlide(
@@ -293,7 +293,7 @@ export function HeroSection() {
           </div>
 
           {/* RIGHT GLOBE */}
-          <div className="absolute lg:top-1/2 translate-y-1/2 lg:-translate-y-1/2 right-0 lg:right-[-30%] w-full h-[500px]">
+          <div className="absolute lg:top-1/2 translate-y-1/2 lg:-translate-y-1/2 right-0 lg:right-[-31.5%] w-full h-[500px]">
             <Globe3DDemo
               globeSpeed={globeSpeed}
               onGlobeLoaded={() => setIsGlobeLoaded(true)}
