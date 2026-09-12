@@ -234,7 +234,7 @@ export function HeroSection() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeHeroSlide}
-                className="h-[40lvh] px-4 sm:px-6 flex flex-col justify-center"
+                className="h-[40lvh] px-4 sm:px-6 flex flex-col lg:justify-center"
                 variants={container}
                 initial="hidden"
                 animate={isGlobeLoaded ? "show" : "hidden"} // only matters on first render
