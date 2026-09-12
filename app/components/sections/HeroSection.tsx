@@ -141,7 +141,7 @@ export function HeroSection() {
 
   return (
     <motion.section
-      className="relative border-b border-[var(--border)] overflow-hidden py-10 lg:py-25 lg:min-h-[calc(100vh-30px)]"
+      className="relative border-b border-[var(--border)] overflow-hidden py-10 lg:py-25 lg:min-h-[calc(100vh)]"
       style={{
         background:
           "linear-gradient(135deg, var(--accent), var(--surface), var(--accent))",
@@ -234,7 +234,7 @@ export function HeroSection() {
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeHeroSlide}
-                className="h-[40lvh] px-4 sm:px-6"
+                className="h-[40lvh] px-4 sm:px-6 flex flex-col justify-center"
                 variants={container}
                 initial="hidden"
                 animate={isGlobeLoaded ? "show" : "hidden"} // only matters on first render

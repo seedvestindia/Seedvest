@@ -479,10 +479,120 @@ function Scene({
 function LoadingFallback() {
   return (
     <Html center>
-      <div className="flex shrink-0 flex-col items-center gap-3">
-        <span className="inline-block shrink-0 text-sm text-neutral-400">
-          Loading globe...
-        </span>
+      <div className="flex items-center justify-center ml-14">
+        <svg
+          viewBox="0 0 80 80"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-20 w-20 text-neutral-400"
+        >
+          <defs>
+            <clipPath id="earth-clip">
+              <circle cx="40" cy="40" r="28" />
+            </clipPath>
+
+            {/* Sphere highlight, upper-left light source */}
+            <radialGradient id="earth-highlight" cx="30%" cy="28%" r="60%">
+              <stop offset="0%" stopColor="#ffffff" stopOpacity="0.22" />
+              <stop offset="55%" stopColor="#ffffff" stopOpacity="0.05" />
+              <stop offset="100%" stopColor="#ffffff" stopOpacity="0" />
+            </radialGradient>
+
+            {/* Terminator shadow, lower-right */}
+            <radialGradient id="earth-shadow" cx="72%" cy="78%" r="65%">
+              <stop offset="0%" stopColor="#000000" stopOpacity="0.35" />
+              <stop offset="60%" stopColor="#000000" stopOpacity="0.12" />
+              <stop offset="100%" stopColor="#000000" stopOpacity="0" />
+            </radialGradient>
+
+            {/* One repeatable strip of landmasses, used twice for a seamless loop */}
+            <g id="landmasses">
+              <path
+                d="M15 27 C17 23 21 20 26 19 L31 20 L34 23 L32 26 L28 27 L27 30 L24 31 L22 29 L19 29 Z"
+                fill="currentColor"
+                fillOpacity="0.55"
+              />
+              <path
+                d="M26 31 L29 32 L30 35 L28 36 L26 34 Z"
+                fill="currentColor"
+                fillOpacity="0.55"
+              />
+              <path
+                d="M28 35 C32 35 34 38 34 42 C34 46 32 50 30 54 L27 59 L26 54 L27 49 L26 45 L27 40 L26 38 Z"
+                fill="currentColor"
+                fillOpacity="0.55"
+              />
+              <path
+                d="M40 24 L44 21 L49 22 L53 24 L51 27 L47 27 L44 29 L41 27 Z"
+                fill="currentColor"
+                fillOpacity="0.55"
+              />
+              <path
+                d="M43 29 C48 28 52 31 53 35 C53 40 50 46 48 50 L44 54 L41 49 L41 44 L40 40 L41 35 L40 32 Z"
+                fill="currentColor"
+                fillOpacity="0.55"
+              />
+              <path
+                d="M51 25 L57 23 L63 25 L68 29 L66 32 L61 32 L58 35 L54 32 L51 30 L53 27 Z"
+                fill="currentColor"
+                fillOpacity="0.55"
+              />
+              <path
+                d="M59 47 C63 45 67 46 69 49 L67 53 L62 55 L59 52 Z"
+                fill="currentColor"
+                fillOpacity="0.55"
+              />
+            </g>
+          </defs>
+
+          <g clipPath="url(#earth-clip)">
+            {/* Ocean tint so the sphere reads as solid, not just outlined land */}
+            <circle
+              cx="40"
+              cy="40"
+              r="28"
+              fill="currentColor"
+              fillOpacity="0.06"
+            />
+
+            {/* Scrolling landmasses: two identical tiles, translated one full tile width */}
+            <g className="globe-spin">
+              <use href="#landmasses" x="0" y="0" />
+              <use href="#landmasses" x="80" y="0" />
+            </g>
+
+            {/* Lighting, fixed on top so it doesn't spin with the surface */}
+            <circle cx="40" cy="40" r="28" fill="url(#earth-highlight)" />
+            <circle cx="40" cy="40" r="28" fill="url(#earth-shadow)" />
+          </g>
+
+          {/* Clean outer edge */}
+          <circle
+            cx="40"
+            cy="40"
+            r="28"
+            stroke="currentColor"
+            strokeWidth="1.5"
+          />
+        </svg>
+
+        <style>{`
+        .globe-spin {
+          animation: globeSpin 5s linear infinite;
+          will-change: transform;
+        }
+
+        @keyframes globeSpin {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-80px); }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .globe-spin {
+            animation: none;
+          }
+        }
+      `}</style>
       </div>
     </Html>
   );
@@ -530,7 +640,7 @@ export function Globe3D({
   );
 
   return (
-    <div className={cn("relative h-[500px] w-full", className)}>
+    <div className={cn("relative h-125 w-full", className)}>
       <Canvas
         gl={{
           antialias: true,
